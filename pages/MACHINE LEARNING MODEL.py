@@ -20,7 +20,7 @@ df.drop(columns=['Credit_History'],inplace = True)
 temp = scaler.fit_transform(df)
 df = pd.DataFrame(temp)
 df.columns = df.columns.astype(str)
-df['Credit_History']=credit
+df['Credit_History']=credit*10
 df['Loan_Status']=loan
 df.dropna(inplace=True)
 X = df.drop(columns=['Loan_Status'])
@@ -86,7 +86,7 @@ try:
     temp = scaler.fit_transform(user_data)
     user_data = pd.DataFrame(temp)
     user_data.columns = user_data.columns.astype(str)
-    user_data['Credit_History'] = credit1.values
+    user_data['Credit_History'] = credit1.values*10
     # user_data['Loan_Status']=loan
 
     y_user_logic = logic.predict_proba(user_data)[:, 1]
