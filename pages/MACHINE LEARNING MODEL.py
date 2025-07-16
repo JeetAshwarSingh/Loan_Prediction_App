@@ -51,16 +51,6 @@ married = st.selectbox("Enter your Martial Status",['No','Yes'])
 dependent = st.selectbox("How many People are Dependent over You",[0,1,2,'3+'])
 education = st.selectbox("What is your Education",['Graduate','Not Graduate'])
 employ = st.selectbox("Are you self Employed",['Yes','No'])
-# 	ApplicantIncome	CoapplicantIncome	LoanAmount	Loan_Amount_Term	Credit_History
-# count	614.000000	614.000000	592.000000	600.00000	564.000000
-# mean	5403.459283	1621.245798	146.412162	342.00000	0.842199
-# std	6109.041673	2926.248369	85.587325	65.12041	0.364878
-# min	150.000000	0.000000	9.000000	12.00000	0.000000
-# 25%	2877.500000	0.000000	100.000000	360.00000	1.000000
-# 50%	3812.500000	1188.500000	128.000000	360.00000	1.000000
-# 75%	5795.000000	2297.250000	168.000000	360.00000	1.000000
-# max	81000.000000	41667.000000	700.000000	480.00000	1.000000
-
 income = st.slider("What is your monthly income? (in Rupees)",0,81000,value=5450,step=50)
 coincome = st.slider("What is Coapplicant's monthly income? (in Rupees)",0,42000,value=1650,step=50)
 loan_amount = st.slider("What is loan amount you applying for",1,700,value=345,step=5)
@@ -74,9 +64,20 @@ else:
     credits=1
 area = st.selectbox("where are you planning to buy your house",['Urban','Suburban','Rural'])
 try:
-    user_data = pd.DataFrame({'Gender':gender,'Married':married,'Dependents':dependent,'Education':education,'Self_Employed':employ,
-   'ApplicantIncome':income,'CoapplicantIncome':coincome,'LoanAmount':loan_amount,'Loan_Amount_Term':loan_term,'Credit_History':credits,
-      'Property_Area':area,'Loan_Status':"Y"},index=[0])
+    user_data = pd.DataFrame({
+        'Gender': ['Male'],
+        'Married': ['Yes'],
+        'Dependents': ['3+'],
+        'Education': ['Graduate'],
+        'Self_Employed': ['Yes'],
+        'ApplicantIncome': [5000],
+        'CoapplicantIncome': [0],
+        'LoanAmount': [128],
+        'Loan_Amount_Term': [360],
+        'Credit_History': [0],
+        'Property_Area': ['Urban'],
+        'Loan_Status': ['Y']
+    })
     for column in columns_to_encode:
         user_data[column]=label.fit_transform(user_data[column])
     credit1 = user_data['Credit_History']
